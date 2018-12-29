@@ -1,6 +1,4 @@
-<?php
-    require_once('header.php');
-?>
+<?php require_once('view/pag/header.php'); ?>
 
 <div class="container" style="padding-top: 150px;">
     <div class="page-header">
@@ -38,4 +36,4 @@
     <?php endwhile; ?>
 <?php endif; ?>
 
-<?php  require_once('footer.php');?>
+<?php  require_once('view/pag/footer.php');?>
