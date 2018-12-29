@@ -1,25 +1,41 @@
-<?php get_header(); ?>
-<main class="home-main">
-	<div class="container">
+<?php
+    require_once('header.php');
+?>
 
-		<?php if( have_posts() ) { ?>
-			<ul class="imoveis-listagem">
-			<?php while( have_posts() ) {
-					the_post(); ?>
+<div class="container" style="padding-top: 150px;">
+    <div class="page-header">
+        <h2 align="center">Teste</h2>
+    </div>
+</div>
+<?
+    if( $queryTaxonomy ) {
+        $taxonomy_args = array(
+            array(
+                'taxonomy' => 'localizacao',
+                'field' => 'slug',
+                'terms' => $_GET['taxonomy']
+            )
+        );
+    }
+    $args = array(
+        'post_type' => 'produto',
+        'tax_query' => $taxonomy_args
+    );
+    $loop = new WP_Query( $args );
+?>
+<?php if($loop->have_posts()) : ?>
+    <?php while($loop->have_posts()): $loop->the_post(); ?>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3><?= $loop->the_title(); ?></h3>
+                </div>
+                <div >
+                    <?= $loop->the_content(); ?>
+                </div>
+            </div>
+        </div>
+    <?php endwhile; ?>
+<?php endif; ?>
 
-				<li class="imoveis-listagem-item">
-					<?php the_post_thumbnail(); ?>
-
-					<h2><?php the_title(); ?></h2>
-
-					<p><?php the_content(); ?></p>
-				</li>
-
-			<?php } ?>
-			</ul>
-		<?php	} ?>
-	</div>
-</main>
-
-
-<?php get_footer(); ?>
+<?php  require_once('footer.php');?>

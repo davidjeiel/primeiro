@@ -1,46 +1,12 @@
 <?php
 
-add_theme_support( 'post-thumbnails' );
-
+/* Registrando menu de navegação */
 
 function registrar_menu_navegacao() {
 	register_nav_menu('header-menu', 'Menu Header');
 }
 
 add_action( 'init', 'registrar_menu_navegacao');
-
-function cadastra_produtos()
-{
-	$descricao = "Cadastra produtos para exposição no site";
-	$singular  = "Produto";
-	$plural    = "Produtos";
-
-	$labels = array(
-		'name' => $plural,
-		'singular_name' => $singular,
-		'view_item' => 'Ver ' . $singular,
-		'edit_item' => 'Editar ' . $singular,
-		'new_item'  => 'Novo ' . $singular,
-		'add_new_item' => 'Adicionar novo ' . $singular
-	);
-
-	$supports = array(
-		'title',
-		'editor',
-		'thumbnail'
-	);
-
-	$args = array(
-		'labels' => $labels,
-		'description' => $descricao,
-		'public' => true,
-		'menu_icon' => 'dashicons-cart',
-		'supports' => $supports
-	);
-	register_post_type("produto", $args);
-}
-
-add_action("init", "cadastra_produtos");
 
 function get_titulo() {
 	if( is_home() ) {
@@ -52,47 +18,7 @@ function get_titulo() {
 	}
 }
 
-/*
-function registrar_imoveis() {
-	$descricao = 'Usado para listar os imóveis da Maluras';
-	$singular = 'Imóvel';
-	$plural = 'Imóveis';
-
-	$labels = array(
-		'name' => $plural,
-		'singular_name' => $singular,
-		'view_item' => 'Ver ' . $singular,
-		'edit_item' => 'Editar ' . $singular,
-		'new_item' => 'Novo ' . $singular,
-		'add_new_item' => 'Adicionar novo ' . $singular
-	);
-
-	$supports = array(
-		'title',
-		'editor',
-		'thumbnail'
-	);
-
-	$args = array(
-		'labels' => $labels,
-		'description' => $descricao,
-		'public' => true,
-		'menu_icon' => 'dashicons-admin-home',
-		'supports' => $supports
-	);
-
-
-	register_post_type( 'imovel', $args);	
-}
-
-add_action('init', 'registrar_imoveis');
-
-// Registrando menu de navegação 
-
-
-
-
-// Criando a taxonomia de localização 
+/* Criando a taxonomia de localização */
 
 function criando_taxonomia_localizacao() {
 	$singular = 'Localização';
@@ -239,6 +165,3 @@ add_action('save_post', 'salvar_meta_info_imoveis');
 function enviar_e_checar_email($nome, $email, $mensagem) {
 		return wp_mail( 'joaodasilvaalura@gmail.com', 'Email Malura', 'Nome: ' . $nome . "\n" . $mensagem  );
 }
-*/
-
-
